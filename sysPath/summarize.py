@@ -177,13 +177,13 @@ def saveFig(path, y_test, predicted, accuracy, testName):
 
 
 
-def recordXLSX(data, modelName, featureMap_Name, anstaz_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy):
-    data.loc[len(data.index)] = [modelName, featureMap_Name, anstaz_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy] # type: ignore
+def recordXLSX(data, modelName, featureMap_Name, anstaz_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy, time):
+    data.loc[len(data.index)] = [modelName, featureMap_Name, anstaz_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy, time] # type: ignore
 
 
 
-def recordXLSX_Override(data, modelName, featureMap_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy):
-    data.loc[len(data.index)] = [modelName, featureMap_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy] # type: ignore
+def recordXLSX_Override(data, modelName, featureMap_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy, time):
+    data.loc[len(data.index)] = [modelName, featureMap_Name, n_qubits, falseCount, trueCount, ratio, smote_state, precision, recall, f1, accuracy, time] # type: ignore
 
 
 

@@ -90,7 +90,7 @@ print(features.info())
 ratio = labels["diagnosis"].value_counts()[1] / len(labels) # get the ratio of the dataset (B:M)
 smoteStatus = False if 0.45 <= ratio <= 0.55 else True # Apply SMOTE for data balancing if the ratio is outside the range 40%-60%.
 dataTrain, dataTest, labelsTrain, labelsTest, n_qubits = prepData(features, labels, smoteStatus)
-data = pd.DataFrame(columns=["Model Name", "FeatureMap", "Anstaz", "# Qubits", "# M", "# B",  "B:M", "Smote", "Precision-Score", "Recall-Score", "F1-Score", "Accuracy"])
+data = pd.DataFrame(columns=["Model Name", "FeatureMap", "Anstaz", "# Qubits", "# M", "# B",  "B:M", "Smote", "Precision-Score", "Recall-Score", "F1-Score", "Accuracy", "Execution Time (s)"])
 
 
 
@@ -195,7 +195,7 @@ for config in configs:
     # summarize the configs & results into an excel file for readability.
     MCount = len(dataset[dataset.diagnosis == "M"])
     BCount = len(dataset[dataset.diagnosis == "B"])
-    recordXLSX(data, modelName, featureMap_Name, anstaz_Name, n_qubits, MCount, BCount, ratio, smoteStatus, precision, recall, f1, accuracy)
+    recordXLSX(data, modelName, featureMap_Name, anstaz_Name, n_qubits, MCount, BCount, ratio, smoteStatus, precision, recall, f1, accuracy, executionTime)
 
     gc.collect()
 
