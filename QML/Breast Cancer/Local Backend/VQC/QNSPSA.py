@@ -41,10 +41,9 @@ firstPhase = time.time()
 
 
 
-optimizer = QNSPSA()
-sampler = Sampler()
 classMap = {"M": 0, "B": 1}
 smoteStatus = False
+sampler = Sampler()
 
 
 
@@ -173,6 +172,9 @@ for config in configs:
     print("="*len(testName))
 
     # Set up and fit the model.
+    fidelity = QNSPSA.get_fidelity(ansatz, sampler = sampler)
+    optimizer = QNSPSA(fidelity=fidelity)
+    
     model = classifier(num_qubits = n_qubits, feature_map = feature_map, ansatz = ansatz, optimizer = optimizer, sampler = sampler)
     model.fit(dataTrain, labelsTrain)
     model.save(rf"{models_dir}/{testName}.model") # Save the model

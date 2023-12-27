@@ -7,7 +7,7 @@
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       468s
+  Execution Time:       741s
 </pre>
 
 <br>
@@ -17,12 +17,12 @@
 <pre>
               precision    recall  f1-score   support
 
-           M       0.53      0.37      0.44        43
-           B       0.68      0.80      0.74        71
+           M       0.40      0.37      0.39        43
+           B       0.64      0.66      0.65        71
 
-    accuracy                           0.64       114
-   macro avg       0.61      0.59      0.59       114
-weighted avg       0.62      0.64      0.62       114
+    accuracy                           0.55       114
+   macro avg       0.52      0.52      0.52       114
+weighted avg       0.55      0.55      0.55       114
 </pre>
 
 <img src='Results/Test 1.png' alt='Test 1.png' width=50% height=50%>
@@ -40,7 +40,7 @@ weighted avg       0.62      0.64      0.62       114
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       455s
+  Execution Time:       1327s
 </pre>
 
 <br>
@@ -50,12 +50,12 @@ weighted avg       0.62      0.64      0.62       114
 <pre>
               precision    recall  f1-score   support
 
-           M       0.79      0.70      0.74        43
-           B       0.83      0.89      0.86        71
+           M       0.89      0.72      0.79        43
+           B       0.85      0.94      0.89        71
 
-    accuracy                           0.82       114
-   macro avg       0.81      0.79      0.80       114
-weighted avg       0.81      0.82      0.81       114
+    accuracy                           0.86       114
+   macro avg       0.87      0.83      0.84       114
+weighted avg       0.86      0.86      0.86       114
 </pre>
 
 <img src='Results/Test 2.png' alt='Test 2.png' width=50% height=50%>
@@ -73,7 +73,7 @@ weighted avg       0.81      0.82      0.81       114
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       198s
+  Execution Time:       1317s
 </pre>
 
 <br>
@@ -83,12 +83,12 @@ weighted avg       0.81      0.82      0.81       114
 <pre>
               precision    recall  f1-score   support
 
-           M       0.81      0.67      0.73        43
-           B       0.82      0.90      0.86        71
+           M       0.84      0.72      0.77        43
+           B       0.84      0.92      0.88        71
 
-    accuracy                           0.82       114
-   macro avg       0.81      0.79      0.80       114
-weighted avg       0.81      0.82      0.81       114
+    accuracy                           0.84       114
+   macro avg       0.84      0.82      0.83       114
+weighted avg       0.84      0.84      0.84       114
 </pre>
 
 <img src='Results/Test 3.png' alt='Test 3.png' width=50% height=50%>
@@ -106,7 +106,7 @@ weighted avg       0.81      0.82      0.81       114
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       1305s
+  Execution Time:       1110s
 </pre>
 
 <br>
@@ -139,7 +139,7 @@ weighted avg       0.93      0.92      0.92       114
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       458s
+  Execution Time:       1685s
 </pre>
 
 <br>
@@ -149,12 +149,12 @@ weighted avg       0.93      0.92      0.92       114
 <pre>
               precision    recall  f1-score   support
 
-           M       0.94      0.77      0.85        43
-           B       0.87      0.97      0.92        71
+           M       0.94      0.79      0.86        43
+           B       0.88      0.97      0.93        71
 
-    accuracy                           0.89       114
-   macro avg       0.91      0.87      0.88       114
-weighted avg       0.90      0.89      0.89       114
+    accuracy                           0.90       114
+   macro avg       0.91      0.88      0.89       114
+weighted avg       0.91      0.90      0.90       114
 </pre>
 
 <img src='Results/Test 5.png' alt='Test 5.png' width=50% height=50%>
@@ -172,7 +172,7 @@ weighted avg       0.90      0.89      0.89       114
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
-  Execution Time:       1335s
+  Execution Time:       1673s
 </pre>
 
 <br>
@@ -182,12 +182,12 @@ weighted avg       0.90      0.89      0.89       114
 <pre>
               precision    recall  f1-score   support
 
-           M       0.94      0.79      0.86        43
-           B       0.88      0.97      0.93        71
+           M       1.00      0.74      0.85        43
+           B       0.87      1.00      0.93        71
 
     accuracy                           0.90       114
-   macro avg       0.91      0.88      0.89       114
-weighted avg       0.91      0.90      0.90       114
+   macro avg       0.93      0.87      0.89       114
+weighted avg       0.92      0.90      0.90       114
 </pre>
 
 <img src='Results/Test 6.png' alt='Test 6.png' width=50% height=50%>
