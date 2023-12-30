@@ -23,6 +23,7 @@ if not os.path.exists(results_dir):
     os.makedirs(results_dir)
 
 from qiskit import QuantumCircuit
+from qiskit.primitives import Sampler
 from qiskit_algorithms.optimizers import QNSPSA
 from qiskit.circuit.library import RealAmplitudes, TwoLocal
 from qiskit.circuit.library import ZFeatureMap, ZZFeatureMap, PauliFeatureMap
@@ -41,9 +42,11 @@ firstPhase = time.time()
 
 
 
-optimizer = QNSPSA()
 classMap = {"M": -1, "B": 1}
 smoteStatus = False
+
+# Define the sampler
+sampler = Sampler()
 
 
 
@@ -177,8 +180,11 @@ for config in configs:
     qc = qc.compose(ansatz)
     
     neural_network = EstimatorQNN(circuit=qc, input_params=feature_map.parameters, weight_params=ansatz.parameters)
-
-    model = classifier(neural_network, optimizer=optimizer)
+    
+    fidelity = QNSPSA.get_fidelity(ansatz, sampler=sampler)
+    optimizer = QNSPSA(fidelity=fidelity)
+    
+    model = classifier(neural_network, optimizer = optimizer)
     model.fit(dataTrain, labelsTrain)
     model.save(rf"{models_dir}/{testName}.model") # Save the model
 
