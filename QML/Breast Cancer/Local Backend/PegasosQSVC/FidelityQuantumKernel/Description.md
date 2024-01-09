@@ -2,7 +2,7 @@
 ## Test 1
 ### Configurations:
 <pre>
-  featureMap used:      ZFeatureMap
+  FeatureMap used:      ZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -34,7 +34,7 @@ weighted avg       0.94      0.93      0.93       114
 ## Test 2
 ### Configurations:
 <pre>
-  featureMap used:      ZZFeatureMap
+  FeatureMap used:      ZZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -66,7 +66,7 @@ weighted avg       0.92      0.90      0.90       114
 ## Test 3
 ### Configurations:
 <pre>
-  featureMap used:      PauliFeatureMap
+  FeatureMap used:      PauliFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True

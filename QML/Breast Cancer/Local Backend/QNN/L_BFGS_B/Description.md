@@ -2,8 +2,8 @@
 ## Test 1
 ### Configurations:
 <pre>
-  ansatz used:          RealAmplitudes
-  featureMap used:      ZFeatureMap
+  Ansatz used:          RealAmplitudes
+  FeatureMap used:      ZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -35,8 +35,8 @@ weighted avg       0.61      0.63      0.61       114
 ## Test 2
 ### Configurations:
 <pre>
-  ansatz used:          RealAmplitudes
-  featureMap used:      ZZFeatureMap
+  Ansatz used:          RealAmplitudes
+  FeatureMap used:      ZZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -68,8 +68,8 @@ weighted avg       0.81      0.82      0.81       114
 ## Test 3
 ### Configurations:
 <pre>
-  ansatz used:          RealAmplitudes
-  featureMap used:      PauliFeatureMap
+  Ansatz used:          RealAmplitudes
+  FeatureMap used:      PauliFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -101,8 +101,8 @@ weighted avg       0.81      0.82      0.81       114
 ## Test 4
 ### Configurations:
 <pre>
-  ansatz used:          TwoLocal
-  featureMap used:      ZFeatureMap
+  Ansatz used:          TwoLocal
+  FeatureMap used:      ZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -134,8 +134,8 @@ weighted avg       0.93      0.92      0.92       114
 ## Test 5
 ### Configurations:
 <pre>
-  ansatz used:          TwoLocal
-  featureMap used:      ZZFeatureMap
+  Ansatz used:          TwoLocal
+  FeatureMap used:      ZZFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
@@ -167,8 +167,8 @@ weighted avg       0.93      0.93      0.93       114
 ## Test 6
 ### Configurations:
 <pre>
-  ansatz used:          TwoLocal
-  featureMap used:      PauliFeatureMap
+  Ansatz used:          TwoLocal
+  FeatureMap used:      PauliFeatureMap
   # Qubits used:        2
   Ratio:                0.63:0.37
   SMOTE:                True
