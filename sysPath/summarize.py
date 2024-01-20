@@ -8,38 +8,45 @@ from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 
 
 
-def getTopFeatures(features, target, nFeautres = 5):
+def getTopFeatures(features, target, nFeautres = None):
+    if nFeautres == None: nFeautres = math.ceil(math.sqrt(features.shape[1]))
+
     best_features = SelectKBest(score_func = chi2, k = nFeautres)
     fit = best_features.fit(features, target)
 
     top_feature_indices = fit.get_support(indices=True)  # Get the indices of the top k features
-    top_feature_names = features.columns[top_feature_indices] # Get the names of the top k features
+    top_feature_names = features.columns[top_feature_indices].tolist() # Get the names of the top k features
 
-    return top_feature_names.tolist()
+    return top_feature_names
 
 
 
 def get_optimal_components(X_train):
-    pca = PCA().fit(X_train)  # Fit PCA on training data
+    # Fit PCA on training data
+    pca = PCA().fit(X_train)
     explained_variance = np.cumsum(pca.explained_variance_ratio_)
 
     # Find the optimal number of components based on the graph
-    optimal_components = np.argmax(explained_variance >= 0.95) + 1  # Adjust threshold as needed
+    optimal_components = int(round(np.argmax(explained_variance >= 0.95)) + 1)  # Adjust threshold as needed 
     optimal_components = 2 if optimal_components == 1 else optimal_components
+    
     return optimal_components
 
 
 
 def setPCA(X_train, X_test):
     n_components = get_optimal_components(X_train)
-    pca = PCA(n_components = n_components).fit(X_train)
-    X_train = pca.transform(X_train)
-    X_test = pca.transform(X_test)
+
+    if n_components != X_train.shape[1]:
+        pca = PCA(n_components = n_components).fit(X_train)
+        X_train = pca.transform(X_train)
+        X_test = pca.transform(X_test)
 
     return X_train, X_test, n_components
 
@@ -54,9 +61,8 @@ def smote(X_train, y_train):
 
 def prepData(features, labels, smote_Status):
     X_train, X_test, y_train, y_test = train_test_split(features.to_numpy(), labels.to_numpy(), test_size = 0.20, random_state = 42)
-    
-    if smote_Status:
-        X_train, y_train = smote(X_train, y_train)
+
+    if smote_Status: X_train, y_train = smote(X_train, y_train)
 
     # Normalize
     std_scale = StandardScaler().fit(X_train)
@@ -89,8 +95,7 @@ def modelEvaluation(model, X_test, y_test, target_names):
 
 
 def display(featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, time, classificationReport):
-    print()
-    print(f"ansatz used:            {anstaz_Name}")
+    print(f"\nansatz used:          {anstaz_Name}")
     print(f"featureMap used:        {featureMap_Name}")
     print(f"# Qubits used:          {n_qubits}")
     print(f"Ratio:                  {ratio:.2f}:{(1-ratio):.2f}")
@@ -100,9 +105,9 @@ def display(featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, time, cl
     print("_"*100 + "\n")
 
 
-def display_Override(featureMap_Name, ratio, n_qubits, smoteStatus, time, classificationReport):
-    print()
-    print(f"featureMap used:        {featureMap_Name}")
+
+def display_Override(featureMap_Name, n_qubits, ratio, smoteStatus, time, classificationReport):
+    print(f"\nfeatureMap used:      {featureMap_Name}")
     print(f"# Qubits used:          {n_qubits}")
     print(f"Ratio:                  {ratio:.2f}:{(1-ratio):.2f}")
     print(f"SMOTE:                  {smoteStatus}")
@@ -118,8 +123,8 @@ def recordResult(path, testName, featureMap_Name, anstaz_Name, n_qubits, ratio, 
         descriptionFile.write(f"\n## {testName}\n")
         descriptionFile.write("### Configurations:\n")
         descriptionFile.write("<pre>\n")
-        descriptionFile.write(f"  ansatz used:          {anstaz_Name}\n")
-        descriptionFile.write(f"  featureMap used:      {featureMap_Name}\n")
+        descriptionFile.write(f"  Ansatz used:          {anstaz_Name}\n")
+        descriptionFile.write(f"  FeatureMap used:      {featureMap_Name}\n")
         descriptionFile.write(f"  # Qubits used:        {n_qubits}\n")
         descriptionFile.write(f"  Ratio:                {ratio:.2f}:{(1-ratio):.2f}\n")
         descriptionFile.write(f"  SMOTE:                {smoteStatus}\n")
@@ -142,7 +147,7 @@ def recordResult_Override(path, testName, featureMap_Name, n_qubits, ratio, smot
         descriptionFile.write(f"\n## {testName}\n")
         descriptionFile.write("### Configurations:\n")
         descriptionFile.write("<pre>\n")
-        descriptionFile.write(f"  featureMap used:      {featureMap_Name}\n")
+        descriptionFile.write(f"  FeatureMap used:      {featureMap_Name}\n")
         descriptionFile.write(f"  # Qubits used:        {n_qubits}\n")
         descriptionFile.write(f"  Ratio:                {ratio:.2f}:{(1-ratio):.2f}\n")
         descriptionFile.write(f"  SMOTE:                {smoteStatus}\n")
@@ -159,7 +164,7 @@ def recordResult_Override(path, testName, featureMap_Name, n_qubits, ratio, smot
 
 
 
-def saveFig(path, y_test, predicted, accuracy, testName):
+def saveFig(path, y_test, predicted, accuracy, testName, classMap):
     confusionMatrix = confusion_matrix(y_test, predicted)
 
     ax = plt.subplot()
@@ -169,8 +174,8 @@ def saveFig(path, y_test, predicted, accuracy, testName):
     ax.set_xlabel('Predicted labels')
     ax.set_ylabel('True labels')
     ax.set_title(f"Accuracy: {accuracy*100:.2f}%")
-    ax.xaxis.set_ticklabels(["M", "B"])
-    ax.yaxis.set_ticklabels(["M", "B"])
+    ax.xaxis.set_ticklabels(classMap)
+    ax.yaxis.set_ticklabels(classMap)
 
     plt.savefig(f"{path}/{testName}.png", dpi = 1000)
     plt.close()
