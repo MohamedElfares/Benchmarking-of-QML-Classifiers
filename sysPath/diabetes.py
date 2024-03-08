@@ -164,8 +164,8 @@ def preProcessing(dataset):
     features = features.drop(["Outcome"], axis = 1)
     labels = dataset[["Outcome"]].copy(deep=True)
 
-    # Retrieve the top 5 significant features
-    topFeauters = getTopFeatures(features, labels, 5)
-    features = features[topFeauters].copy(deep=True)
+    # # Retrieve the top 5 significant features
+    # topFeauters = getTopFeatures(features, labels, 5)
+    # features = features[topFeauters].copy(deep=True)
     
     return features, labels

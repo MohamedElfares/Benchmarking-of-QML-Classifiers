@@ -28,21 +28,20 @@ def getTopFeatures(features, target, nFeautres = None):
 
 
 def get_optimal_components(X_train):
-    # Fit PCA on training data
+    # Fit PCA on training data.
     pca = PCA().fit(X_train)
     explained_variance = np.cumsum(pca.explained_variance_ratio_)
 
-    # Find the optimal number of components based on the graph
+    # Find the optimal number of components based on the explained variance with 95% of a confidance. 
     optimal_components = int(round(np.argmax(explained_variance >= 0.95)) + 1)  # Adjust threshold as needed 
     optimal_components = 2 if optimal_components == 1 else optimal_components
-    
+
     return optimal_components
 
 
 
 def setPCA(X_train, X_test):
     n_components = get_optimal_components(X_train)
-
     if n_components != X_train.shape[1]:
         pca = PCA(n_components = n_components).fit(X_train)
         X_train = pca.transform(X_train)
@@ -63,15 +62,14 @@ def prepData(features, labels, smote_Status):
     X_train, X_test, y_train, y_test = train_test_split(features.to_numpy(), labels.to_numpy(), test_size = 0.20, random_state = 42)
 
     if smote_Status: X_train, y_train = smote(X_train, y_train)
-
     # Normalize
     std_scale = StandardScaler().fit(X_train)
-    X_train = std_scale.transform(X_train)
+    X_train = std_scale.transform(X_train) # type: ignore
     X_test = std_scale.transform(X_test)
 
     # Scale for better fit within the feature map
-    minmax_scale = MinMaxScaler().fit(X_train)
-    X_train = minmax_scale.transform(X_train)
+    minmax_scale = MinMaxScaler().fit(X_train) # type: ignore
+    X_train = minmax_scale.transform(X_train) # type: ignore
     X_test = minmax_scale.transform(X_test)
 
     X_train, X_test, n_components = setPCA(X_train, X_test)
@@ -174,6 +172,7 @@ def saveFig(path, y_test, predicted, accuracy, testName, classMap):
     ax.set_xlabel('Predicted labels')
     ax.set_ylabel('True labels')
     ax.set_title(f"Accuracy: {accuracy*100:.2f}%")
+
     ax.xaxis.set_ticklabels(classMap)
     ax.yaxis.set_ticklabels(classMap)
 
