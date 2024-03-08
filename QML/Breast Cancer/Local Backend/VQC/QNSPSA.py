@@ -30,8 +30,9 @@ from qiskit.circuit.library import ZFeatureMap, ZZFeatureMap, PauliFeatureMap
 
 from qiskit_machine_learning.algorithms.classifiers import VQC as classifier
 
+from breastCancer import preProcessing # type: ignore
+from summarize import prepData, modelEvaluation, lastTouch # type: ignore
 from summarize import display, recordResult, saveFig, recordXLSX, barPlot # type: ignore
-from summarize import getTopFeatures, prepData, modelEvaluation, lastTouch # type: ignore
 
 import logging
 import pandas as pd
@@ -47,32 +48,12 @@ sampler = Sampler()
 
 
 
-# Pre-process the dataset & feature engineering
-def preProcessing(dataset):
-    dataset = dataset.dropna() # drop NaN values
-    dataset = dataset.reset_index(drop = True) # reset the indices
-
-    # split the dataset into features & class
-    features = dataset.copy(deep=True)
-    features = features.drop(["id", "diagnosis"], axis = 1)
-    
-    labels = dataset[["diagnosis"]].copy(deep=True)
-    labels["diagnosis"] = labels["diagnosis"].map(classMap)
-
-    # Retrieve the top 5 significant features
-    topFeauters = getTopFeatures(features, labels, 5)
-    features = features[topFeauters].copy(deep=True)
-
-    return features, labels
-
-
-
 # Load dataset
 print("Dataset before pre-Processing")
 print("="*20)
 dataset = pd.read_csv(r"../../../../Datasets/Breast Cancer.csv")
 print(dataset.info())
-features, labels = preProcessing(dataset.copy(deep=True))
+features, labels = preProcessing(dataset.copy(deep=True), classMap)
 print("\n\nDataset after pre-Processing")
 print("="*20)
 print(features.info())
@@ -185,7 +166,7 @@ for config in configs:
 
     # Evaluate model, display results, record, and save figures that include scores, classification report, and confusion matrices.
     predicted, precision, accuracy, recall, f1, classificationReport = modelEvaluation(model, dataTest, labelsTest, list(classMap.keys()))
-    saveFig(results_dir, labelsTest, predicted, accuracy, testName)
+    saveFig(results_dir, labelsTest, predicted, accuracy, testName, classMap.keys())
     display(featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, executionTime, classificationReport)
     recordResult(base_dir, testName, featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, executionTime, classificationReport)
 

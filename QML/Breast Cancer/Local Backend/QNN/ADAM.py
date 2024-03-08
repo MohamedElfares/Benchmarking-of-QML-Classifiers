@@ -30,8 +30,9 @@ from qiskit.circuit.library import ZFeatureMap, ZZFeatureMap, PauliFeatureMap
 from qiskit_machine_learning.neural_networks import EstimatorQNN
 from qiskit_machine_learning.algorithms.classifiers import NeuralNetworkClassifier as classifier
 
+from breastCancer import preProcessing # type: ignore
+from summarize import prepData, modelEvaluation, lastTouch # type: ignore
 from summarize import display, recordResult, saveFig, recordXLSX, barPlot # type: ignore
-from summarize import getTopFeatures, prepData, modelEvaluation, lastTouch # type: ignore
 
 import logging
 import pandas as pd
@@ -47,32 +48,12 @@ smoteStatus = False
 
 
 
-# Pre-process the dataset & feature engineering
-def preProcessing(dataset):
-    dataset = dataset.dropna() # drop NaN values
-    dataset = dataset.reset_index(drop = True) # reset the indices
-
-    # split the dataset into features & class
-    features = dataset.copy(deep=True)
-    features = features.drop(["id", "diagnosis"], axis = 1)
-    
-    labels = dataset[["diagnosis"]].copy(deep=True)
-    labels["diagnosis"] = labels["diagnosis"].map(classMap)
-
-    # Retrieve the top 5 significant features
-    topFeauters = getTopFeatures(features, labels, 5)
-    features = features[topFeauters].copy(deep=True)
-
-    return features, labels
-
-
-
 # Load dataset
 print("Dataset before pre-Processing")
 print("="*20)
 dataset = pd.read_csv(r"../../../../Datasets/Breast Cancer.csv")
 print(dataset.info())
-features, labels = preProcessing(dataset.copy(deep=True))
+features, labels = preProcessing(dataset.copy(deep=True), classMap)
 print("\n\nDataset after pre-Processing")
 print("="*20)
 print(features.info())
@@ -174,9 +155,9 @@ for config in configs:
     # Set up quantum cirquit and fit the model.
     qc = QuantumCircuit(n_qubits)
     qc = qc.compose(feature_map)
-    qc = qc.compose(ansatz)
+    qc = qc.compose(ansatz) # type: ignore
     
-    neural_network = EstimatorQNN(circuit=qc, input_params=feature_map.parameters, weight_params=ansatz.parameters)
+    neural_network = EstimatorQNN(circuit=qc, input_params=feature_map.parameters, weight_params=ansatz.parameters) # type: ignore
 
     model = classifier(neural_network, optimizer=optimizer)
     model.fit(dataTrain, labelsTrain)
@@ -188,7 +169,7 @@ for config in configs:
 
     # Evaluate model, display results, record, and save figures that include scores, classification report, and confusion matrices.
     predicted, precision, accuracy, recall, f1, classificationReport = modelEvaluation(model, dataTest, labelsTest, list(classMap.keys()))
-    saveFig(results_dir, labelsTest, predicted, accuracy, testName)
+    saveFig(results_dir, labelsTest, predicted, accuracy, testName, classMap.keys())
     display(featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, executionTime, classificationReport)
     recordResult(base_dir, testName, featureMap_Name, anstaz_Name, n_qubits, ratio, smoteStatus, executionTime, classificationReport)
 
@@ -198,6 +179,8 @@ for config in configs:
     recordXLSX(data, modelName, featureMap_Name, anstaz_Name, n_qubits, MCount, BCount, ratio, smoteStatus, precision, recall, f1, accuracy, executionTime)
 
     gc.collect()
+
+
 
 # plot the results of each combination of config based on Accuracy & F1-Score to easily comparison
 barPlot(data, base_dir)

@@ -184,9 +184,9 @@ for config in configs:
     # Set up quantum cirquit and fit the model.
     qc = QuantumCircuit(n_qubits)
     qc = qc.compose(feature_map)
-    qc = qc.compose(ansatz)
+    qc = qc.compose(ansatz) # type: ignore
     
-    neural_network = SamplerQNN(circuit=qc, sampler=sampler, input_params=feature_map.parameters, weight_params=ansatz.parameters)
+    neural_network = SamplerQNN(circuit=qc, sampler=sampler, input_params=feature_map.parameters, weight_params=ansatz.parameters) # type: ignore
 
     model = classifier(neural_network, optimizer=optimizer)
     model.fit(dataTrain, labelsTrain)
