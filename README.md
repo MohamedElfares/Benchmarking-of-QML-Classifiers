@@ -1,6 +1,6 @@
 # Quantum Machine Learning — Benchmarking QSVM & VQC for Binary Classification
 
-> Research project from the **University of Sharjah** benchmarking Quantum Support Vector Machines (QSVM) and Variational Quantum Circuits (VQC) against classical classifiers on binary classification tasks.
+> Research project from the **University of Sharjah** Experimental Benchmarking of Quantum Machine Learning Classifiers against classical classifiers on binary classification tasks.
 
 ---
 
