@@ -2,18 +2,12 @@ cff-version: 1.2.0
 message: "If you use this code, please cite the paper below."
 type: software
 title: "Quantum Machine Learning — Benchmarking QSVM & VQC for Binary Classification"
-# Authors of the code itself. Defaults to the paper's authors; trim if fewer people wrote the code.
+# People who wrote the code. The paper's authors are listed under preferred-citation.
 authors:
-    - given-names: Mohamed
-      family-names: Aly
-    - given-names: Salma
-      family-names: Fadaaq
+    - given-names: Mohamed Erfan
+      family-names: Elfares
     - given-names: Omnia
       family-names: Abu Warga
-    - given-names: Qassim
-      family-names: Nasir
-    - given-names: Manar
-      family-names: Abu Talib
 repository-code: "https://github.com/MohamedElfares/Benchmarking-of-QML-Classifiers"
 license: MIT # SPDX ID; change to Apache-2.0 or BSD-3-Clause if you pick one of those
 keywords:
