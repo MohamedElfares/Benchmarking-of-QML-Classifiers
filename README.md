@@ -1,6 +1,6 @@
 # Quantum Machine Learning — Benchmarking QSVM & VQC for Binary Classification
 
-> Research project from the **University of Sharjah** Experimental Benchmarking of Quantum Machine Learning Classifiers against classical classifiers on binary classification tasks.
+> Code for the paper *Experimental Benchmarking of Quantum Machine Learning Classifiers* (IEEE ICSPIS 2023), a research project from the **University of Sharjah** that benchmarks quantum classifiers on binary classification tasks.
 
 ---
 
@@ -10,7 +10,7 @@ Classical machine learning algorithms face well-known computational limits on hi
 
 This project trains and evaluates quantum classifiers on three real-world datasets — Breast Cancer, Diabetes, and Titanic — across **100+ test configurations** that vary the feature map, ansatz, optimizer, and data preprocessing settings. All experiments run on a quantum simulator using [Qiskit](https://qiskit.org/).
 
-**Paper:** *Benchmarking of Quantum Support Vector Machine and Variational Quantum Circuit with Binary Classification* — Mohamed Aly, Manar Abu Talib, Salma Fadaaq, Qassim Nasir — University of Sharjah.
+**Paper:** *Experimental Benchmarking of Quantum Machine Learning Classifiers* — Mohamed Aly, Salma Fadaaq, Omnia Abu Warga, Qassim Nasir, Manar Abu Talib — 2023 6th International Conference on Signal Processing and Information Security (ICSPIS), IEEE, pp. 240–245. DOI: [10.1109/ICSPIS60075.2023.10343811](https://doi.org/10.1109/ICSPIS60075.2023.10343811)
 
 ---
 
@@ -26,6 +26,7 @@ This project trains and evaluates quantum classifiers on three real-world datase
 8. [Requirements](#requirements)
 9. [Installation](#installation)
 10. [Usage](#usage)
+11. [Citation](#citation)
 
 ---
 
@@ -89,7 +90,7 @@ Standardizes features to zero mean and unit variance, ensuring no single feature
 Rescales normalized features to [0, 1], a required range for angle-based quantum encoding in feature maps.
 
 **Class Balancing — SMOTE**
-SMOTE is applied automatically when the minority-to-majority class ratio falls outside the 45%–55% range.
+SMOTE is applied automatically when the class ratio falls outside the 45%–55% range.
 
 ---
 
@@ -210,7 +211,7 @@ For configurations that scored ≥ 0.70 accuracy within 30 minutes of training t
 ## Repository Structure
 
 ```
-Quantum-ML/
+Benchmarking-of-QML-Classifiers/
 ├── Datasets/
 │   ├── Breast Cancer.csv
 │   ├── Diabetes.csv
@@ -271,8 +272,8 @@ Each trained model saves:
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/Quantum-ML.git
-cd Quantum-ML
+git clone https://github.com/MohamedElfares/Benchmarking-of-QML-Classifiers.git
+cd Benchmarking-of-QML-Classifiers
 
 pip install qiskit qiskit-machine-learning qiskit-algorithms
 pip install scikit-learn imbalanced-learn pandas openpyxl matplotlib
@@ -304,7 +305,16 @@ To run a different optimizer, navigate to its folder and execute the correspondi
 
 If you use this work, please cite:
 
-```
-Mohamed Aly, Manar Abu Talib, Salma Fadaaq, Qassim Nasir,
-"Experimental Benchmarking of Quantum Machine Learning Classifiers" University of Sharjah, UAE.
+> M. Aly, S. Fadaaq, O. Abu Warga, Q. Nasir, and M. Abu Talib, "Experimental Benchmarking of Quantum Machine Learning Classifiers," in *2023 6th International Conference on Signal Processing and Information Security (ICSPIS)*, Dubai, United Arab Emirates, 2023, pp. 240–245, doi: [10.1109/ICSPIS60075.2023.10343811](https://doi.org/10.1109/ICSPIS60075.2023.10343811).
+
+```bibtex
+@inproceedings{aly2023experimental,
+  author    = {Aly, Mohamed and Fadaaq, Salma and Abu Warga, Omnia and Nasir, Qassim and Abu Talib, Manar},
+  title     = {Experimental Benchmarking of Quantum Machine Learning Classifiers},
+  booktitle = {2023 6th International Conference on Signal Processing and Information Security (ICSPIS)},
+  pages     = {240--245},
+  year      = {2023},
+  publisher = {IEEE},
+  doi       = {10.1109/ICSPIS60075.2023.10343811}
+}
 ```

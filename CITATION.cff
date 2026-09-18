@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+type: software
+title: "Quantum Machine Learning — Benchmarking QSVM & VQC for Binary Classification"
+# Authors of the code itself. Defaults to the paper's authors; trim if fewer people wrote the code.
+authors:
+    - given-names: Mohamed
+      family-names: Aly
+    - given-names: Salma
+      family-names: Fadaaq
+    - given-names: Omnia
+      family-names: Abu Warga
+    - given-names: Qassim
+      family-names: Nasir
+    - given-names: Manar
+      family-names: Abu Talib
+repository-code: "https://github.com/MohamedElfares/Benchmarking-of-QML-Classifiers"
+license: MIT # SPDX ID; change to Apache-2.0 or BSD-3-Clause if you pick one of those
+keywords:
+    - quantum machine learning
+    - Qiskit
+    - QSVM
+    - VQC
+    - binary classification
+    - benchmarking
+
+# The paper GitHub's "Cite this repository" button will point people to.
+preferred-citation:
+    type: conference-paper
+    title: "Experimental Benchmarking of Quantum Machine Learning Classifiers"
+    authors:
+        - given-names: Mohamed
+          family-names: Aly
+        - given-names: Salma
+          family-names: Fadaaq
+        - given-names: Omnia
+          family-names: Abu Warga
+        - given-names: Qassim
+          family-names: Nasir
+        - given-names: Manar
+          family-names: Abu Talib
+    collection-title: "2023 6th International Conference on Signal Processing and Information Security (ICSPIS)"
+    collection-type: proceedings
+    conference:
+        name: "2023 6th International Conference on Signal Processing and Information Security (ICSPIS)"
+        city: Dubai
+        country: AE
+        date-start: "2023-11-08"
+        date-end: "2023-11-09"
+    publisher:
+        name: IEEE
+    start: 240
+    end: 245
+    year: 2023
+    month: 11
+    doi: 10.1109/ICSPIS60075.2023.10343811
+    url: "https://ieeexplore.ieee.org/document/10343811"
